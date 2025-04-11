@@ -32,3 +32,7 @@ Se utiliza `forEach()` para recorrer todos los productos de forma sencilla y efi
 * Usa la clase de Bootstrap Modal para mostrar la ventana emergente
 
 * Se muestra la descripción completa, imagen, precio del producto seleccionado.
+
+>Vista previa del index.html
+
+![Index]()

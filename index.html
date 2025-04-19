@@ -7,8 +7,24 @@
     <title>Productos</title>
 </head>
 <body>
-    <main class="container">
-    <h1>Productos</h1>
+  
+    <main class="container my-4">
+    <h1 class="mb-4">Productos</h1>
+    <!-- Boton categorias -->
+<div class="btn-group">
+  <button type="button" class="btn btn-danger">Categorias</button>
+  <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="visually-hidden">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu" id="ulMenu">
+  
+    <li><hr class="dropdown-divider"></li>
+    <li><a class="dropdown-item" onclick="getData('')">Todas</a></li>
+  </ul>
+</div>
+   <!-- Contenedor de productos -->
+   <div id="mainProds" class="d-flex flex-wrap justify-content-center"></div>
+  
     </main>
 
 <div class="modal fade" id="modalProducto" tabindex="-1" aria-labelledby="modalProductoLabel" aria-hidden="true">

@@ -15,6 +15,7 @@ Cada tarjeta contiene:
 * Título
 * Precio
 * Botón que abre un modal con más información 
+* Categorias
 Se utiliza `forEach()` para recorrer todos los productos de forma sencilla y eficiente.
 
 ### Para acceder y modificar el contenido de la página, se utilizan métodos como:

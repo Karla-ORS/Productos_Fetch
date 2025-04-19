@@ -2,23 +2,45 @@ const URLMain = "https://fakestoreapi.com/products/";
 const mainProds = document.getElementById("mainProds");
 const ulMenu = document.getElementById("ulMenu");
 
-// Función para obtener productos
+// Función para obtener productos (todos o por categoría)
 function getData(cat = "") {
     const url = cat ? `${URLMain}category/${cat}` : URLMain;
 
     fetch(url, { method: "GET" })
         .then((response) => response.json())
         .then((res) => {
-            mainProds.innerHTML = ""; // Limpiar contenido anterior
+            mainProds.innerHTML = ""; // Limpia antes de mostrar
             createCards(res);
         })
         .catch((err) => {
             mainProds.insertAdjacentHTML("beforeend",
-                `<div class="alert alert-danger" role="alert">${err.message}</div>`);
+                `<div class="alert alert-danger" role="alert">
+                    ${err.message}
+                </div>`);
         });
 }
 
-// Función para crear las tarjetas
+// Función para cargar las categorías en el dropdown
+function getCategories() {
+    fetch(`${URLMain}categories/`)
+        .then((response) => response.json())
+        .then((res) => {
+            console.log("categories: ", res);
+            res.forEach(cat => {
+                ulMenu.insertAdjacentHTML("beforeend", `
+                    <li><a class="dropdown-item" style="cursor:pointer;" onclick="getData('${cat}')">${cat}</a></li>
+                `);
+            });
+        })
+        .catch((err) => {
+            mainProds.insertAdjacentHTML("beforeend",
+                `<div class="alert alert-danger" role="alert">
+                    ${err.message}
+                </div>`);
+        });
+}
+
+// Función para crear las tarjetas de producto
 function createCards(prods) {
     prods.forEach(prod => {
         const card = `
@@ -35,7 +57,7 @@ function createCards(prods) {
     });
 }
 
-// Función para mostrar el modal
+// Modal para mostrar detalles del producto
 function mostrarModal(titulo, descripcion, imagen, precio) {
     document.getElementById("modalProductoLabel").textContent = titulo;
     document.getElementById("modalDesc").textContent = descripcion;
@@ -46,17 +68,7 @@ function mostrarModal(titulo, descripcion, imagen, precio) {
     modal.show();
 }
 
-// Cargar productos iniciales
-getData();
+// Inicialización
+getData();       // Cargar productos
+getCategories(); // Cargar categorías
 
-// Opcional: si tienes un menú dinámico
-// Puedes agregar esto si no lo tienes aún
-fetch(`${URLMain}categories`)
-    .then(res => res.json())
-    .then(cats => {
-        cats.forEach(cat => {
-            ulMenu.insertAdjacentHTML("beforeend", `
-                <li><a class="dropdown-item" onclick="getData('${cat}')">${cat}</a></li>
-            `);
-        });
-    });

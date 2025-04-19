@@ -37,4 +37,4 @@ Se utiliza `forEach()` para recorrer todos los productos de forma sencilla y efi
 
 >Vista previa del index.html
 
-![Index](https://raw.githubusercontent.com/Karla-ORS/Productos_Fetch/refs/heads/main/Imagen/Captura%20de%20pantalla%202025-04-11%20155911.png)
+![Index](https://raw.githubusercontent.com/Karla-ORS/Productos_Fetch/refs/heads/main/Imagen/Captura%20de%20pantalla%202025-04-18%20235328.png)

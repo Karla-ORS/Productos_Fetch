@@ -25,16 +25,20 @@ function getCategories() {
     fetch(`${URLMain}categories/`)
         .then((response) => response.json())
         .then((res) => {
-            console.log("categories: ", res);
             res.forEach(cat => {
-                ulMenu.insertAdjacentHTML("beforeend", `
-                    <li><a class="dropdown-item" style="cursor:pointer;" onclick="getData('${cat}')">${cat}</a></li>
-                `);
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                a.textContent = cat;
+                a.className = "dropdown-item";
+                a.style.cursor = "pointer";
+                a.addEventListener("click", () => getData(cat));
+                li.appendChild(a);
+                ulMenu.appendChild(li);
             });
         })
         .catch((err) => {
-            mainProds.insertAdjacentHTML("beforeend",
-                `<div class="alert alert-danger" role="alert">
+            mainProds.insertAdjacentHTML("beforeend", `
+                <div class="alert alert-danger" role="alert">
                     ${err.message}
                 </div>`);
         });
@@ -71,4 +75,3 @@ function mostrarModal(titulo, descripcion, imagen, precio) {
 // Inicialización
 getData();       // Cargar productos
 getCategories(); // Cargar categorías
-
